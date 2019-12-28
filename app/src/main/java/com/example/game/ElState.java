@@ -1,9 +1,7 @@
 package com.example.game;
 
-public class ElState {
-    public enum ElementState {
-        EMPTY,
-        X,
-        Y
-    }
+public enum ElState {
+    E,
+    X,
+    O
 }

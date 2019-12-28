@@ -10,8 +10,15 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    boolean checker = false;
-    int[][] board = new int[3][3];
+    ElState turn = ElState.X;
+
+    private void nextTurn() {
+        turn = turn == ElState.X ? ElState.O : ElState.X;
+    }
+
+    private String getTurnText() {
+        return turn == ElState.X ? "X" : "O";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,27 +31,28 @@ public class MainActivity extends AppCompatActivity {
 //        newBoard.setElement(1, 2, ElState.O);
 //        newBoard.print();
 
-        for (int i = 1; i <= 9; i++) {
-            final Button button = (Button) findViewById(getResources().getIdentifier("button_" + i, "id",
-                    this.getPackageName()));
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    checker = !checker;
-                    Log.d("msg", String.valueOf(button));
-                    if (checker == true) {
-                        button.setText("X");
-
-                    } else {
-                        button.setText("0");
+        for (int i = 0; i < newBoard.boardSize; i++) {
+            for (int j=0; j< newBoard.boardSize; j++) {
+                final int indexI = i;
+                final int indexJ = j;
+                String buttonId = "button_" + indexI + "_" + indexJ;
+//                System.out.println("buttonId " + buttonId);
+                final Button button = findViewById(getResources().getIdentifier(buttonId, "id", this.getPackageName()));
+                button.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        newBoard.setElement(indexI,indexJ,turn);
+                        newBoard.print();
+                        button.setText(getTurnText());
+                        nextTurn();
+                        v.setClickable(false);
+                        v.setEnabled(false);
+                        resetFunc();
                     }
-                    Log.d("message", String.valueOf(checker));
-                    v.setClickable(false);
-                    v.setEnabled(false);
-                    resetFunc();
-                }
-            });
+                });
+            }
         }
     }
+
     public void resetFunc() {
         Button button = (Button) findViewById(R.id.button_reset);
         button.setOnClickListener(new View.OnClickListener() {

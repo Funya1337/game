@@ -3,7 +3,8 @@ package com.example.game;
 import java.util.Arrays;
 
 public class Board {
-    private int boardSize = 3;
+    public int boardSize = 3;
+
     private ElState[][] board = new ElState[boardSize][boardSize];
 
     public Board() {
@@ -21,10 +22,10 @@ public class Board {
     }
 
     void print() {
-        System.out.println("--- BOARD ---");
+        System.out.println("--- BOARD BEGIN ---");
         for (int i=0; i<boardSize; i++) {
             System.out.println(board[i][0] + " " + board[i][1] + " " + board[i][2]);
         }
-        System.out.println("--- BOARD ---");
+        System.out.println("--- BOARD END ---");
     }
 }

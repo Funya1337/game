@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     ElState turn = ElState.X;
+    final Board newBoard = new Board();
 
     private void nextTurn() {
         turn = turn == ElState.X ? ElState.O : ElState.X;
@@ -25,22 +26,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Board newBoard = new Board();
-
-//        newBoard.setElement(0, 1, ElState.X);
-//        newBoard.setElement(1, 2, ElState.O);
-//        newBoard.print();
-
         for (int i = 0; i < newBoard.boardSize; i++) {
             for (int j=0; j< newBoard.boardSize; j++) {
                 final int indexI = i;
                 final int indexJ = j;
                 String buttonId = "button_" + indexI + "_" + indexJ;
-//                System.out.println("buttonId " + buttonId);
                 final Button button = findViewById(getResources().getIdentifier(buttonId, "id", this.getPackageName()));
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        newBoard.setElement(indexI,indexJ,turn);
+                        newBoard.setElement(indexI, indexJ, turn);
+                        newBoard.checkRowsForWin(indexI, indexJ, turn);
+                        System.out.println(newBoard.checkRowsForWin(indexI, indexJ, turn));
                         newBoard.print();
                         button.setText(getTurnText());
                         nextTurn();
@@ -57,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button_reset);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                newBoard.clearBoard();
+                newBoard.print();
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);

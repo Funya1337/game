@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         newBoard.checkRowsForWin(indexI, indexJ, turn);
                         newBoard.checkColForWin(indexI, indexJ, turn);
                         newBoard.checkDiagForWin(indexI, indexJ, turn);
+                        newBoard.checkForWinner(indexI, indexJ, turn);
                         newBoard.print();
                         button.setText(getTurnText());
                         nextTurn();

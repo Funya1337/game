@@ -95,6 +95,18 @@ public class Board {
         }
         return ElState.E;
     }
+    public ElState checkForWinner(int xIndex, int yIndex, ElState value) {
+        board[xIndex][yIndex] = value;
+        if (checkColForWin(xIndex, yIndex, value) == ElState.X || checkRowsForWin(xIndex, yIndex, value) == ElState.X || checkDiagForWin(xIndex, yIndex, value) == ElState.X) {
+            System.out.println("CROSS IS WINNER");
+            return ElState.X;
+        }
+        if (checkColForWin(xIndex, yIndex, value) == ElState.O || checkRowsForWin(xIndex, yIndex, value) == ElState.O || checkDiagForWin(xIndex, yIndex, value) == ElState.O) {
+            System.out.println("ZERO IS WINNER");
+            return ElState.O;
+        }
+        return ElState.E;
+    }
 
     void print() {
         System.out.println("--- BOARD BEGIN ---");

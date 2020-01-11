@@ -30,15 +30,68 @@ public class Board {
 
         for (int i = 0; i < board.length; i++) {
             int winnerCounterCross = 0;
+            int winnerCounterZero = 0;
             for (int j = 0; j < board.length; j++) {
                 if (board[i][j] == ElState.X) {
                     winnerCounterCross += 1;
                 }
+                if (board[i][j] == ElState.O) {
+                    winnerCounterZero += 1;
+                }
             }
             if (winnerCounterCross == board.length) {
-                System.out.println("CROSS IS WINNER");
                 return ElState.X;
             }
+            if (winnerCounterZero == board.length) {
+                return ElState.O;
+            }
+        }
+        return ElState.E;
+    }
+
+    public ElState checkColForWin(int xIndex, int yIndex, ElState value) {
+        board[xIndex][yIndex] = value;
+        for (int i = 0; i < board.length; i++) {
+            int winnerCounterCross = 0;
+            int winnerCounterZero = 0;
+            for (int j = 0; j < board.length; j++) {
+                if (board[j][i] == ElState.X) {
+                    winnerCounterCross += 1;
+                }
+                if (board[j][i] == ElState.O) {
+                    winnerCounterZero += 1;
+                }
+            }
+            if (winnerCounterCross == board.length) {
+                return ElState.X;
+            }
+            if (winnerCounterZero == board.length) {
+                return ElState.O;
+            }
+        }
+        return ElState.E;
+    }
+
+    public ElState checkDiagForWin(int xIndex, int yIndex, ElState value) {
+        board[xIndex][yIndex] = value;
+
+        int winnerCounterCross = 0;
+        int winnerCounterZero = 0;
+
+        for (int i = 0; i < board.length; i++) {
+            int diag2 = (board.length - 1) - i;
+            if (board[i][i] == ElState.X || board[i][diag2] == ElState.X) {
+                winnerCounterCross += 1;
+            }
+            if (board[i][i] == ElState.O || board[i][diag2] == ElState.O) {
+                winnerCounterZero += 1;
+            }
+        }
+        if (winnerCounterCross == board.length) {
+            return ElState.X;
+        }
+        if (winnerCounterZero == board.length) {
+            return ElState.O;
         }
         return ElState.E;
     }

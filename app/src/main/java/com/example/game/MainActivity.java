@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         newBoard.setElement(indexI, indexJ, turn);
                         newBoard.checkRowsForWin(indexI, indexJ, turn);
-                        System.out.println(newBoard.checkRowsForWin(indexI, indexJ, turn));
+                        newBoard.checkColForWin(indexI, indexJ, turn);
+                        newBoard.checkDiagForWin(indexI, indexJ, turn);
                         newBoard.print();
                         button.setText(getTurnText());
                         nextTurn();

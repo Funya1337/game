@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     ElState turn = ElState.X;
     final Board newBoard = new Board();
+    int checker = 0;
 
     private void nextTurn() {
         turn = turn == ElState.X ? ElState.O : ElState.X;

@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         newBoard.setElement(indexI, indexJ, turn);
-                        newBoard.checkRowsForWin(indexI, indexJ, turn);
-                        newBoard.checkColForWin(indexI, indexJ, turn);
-                        newBoard.checkDiagForWin(indexI, indexJ, turn);
-                        newBoard.checkForWinner(indexI, indexJ, turn);
+                        newBoard.checkRowsForWin();
+                        newBoard.checkColForWin();
+                        newBoard.checkDiagForWin();
+                        newBoard.checkForWinner();
                         newBoard.print();
                         button.setText(getTurnText());
                         nextTurn();

@@ -25,9 +25,7 @@ public class Board {
         return board[xIndex][yIndex];
     }
 
-    public ElState checkRowsForWin(int xIndex, int yIndex, ElState value) {
-        board[xIndex][yIndex] = value;
-
+    public ElState checkRowsForWin() {
         for (int i = 0; i < board.length; i++) {
             int winnerCounterCross = 0;
             int winnerCounterZero = 0;
@@ -49,8 +47,7 @@ public class Board {
         return ElState.E;
     }
 
-    public ElState checkColForWin(int xIndex, int yIndex, ElState value) {
-        board[xIndex][yIndex] = value;
+    public ElState checkColForWin() {
         for (int i = 0; i < board.length; i++) {
             int winnerCounterCross = 0;
             int winnerCounterZero = 0;
@@ -72,8 +69,7 @@ public class Board {
         return ElState.E;
     }
 
-    public ElState checkDiagForWin(int xIndex, int yIndex, ElState value) {
-        board[xIndex][yIndex] = value;
+    public ElState checkDiagForWin() {
         int winnerCounterCross = 0;
         int winnerCounterCross1 = 0;
         int winnerCounterZero = 0;
@@ -109,16 +105,15 @@ public class Board {
         return ElState.E;
     }
 
-    public ElState checkForWinner(int xIndex, int yIndex, ElState value) {
-        board[xIndex][yIndex] = value;
+    public ElState checkForWinner() {
 //        System.out.println(checkColForWin(xIndex, yIndex, value));
 //        System.out.println(checkRowsForWin(xIndex, yIndex, value));
 //        System.out.println(checkDiagForWin(xIndex, yIndex, value));
-        if (checkColForWin(xIndex, yIndex, value) == ElState.X || checkRowsForWin(xIndex, yIndex, value) == ElState.X || checkDiagForWin(xIndex, yIndex, value) == ElState.X) {
+        if (checkColForWin() == ElState.X || checkRowsForWin() == ElState.X || checkDiagForWin() == ElState.X) {
             System.out.println("CROSS IS WINNER");
             return ElState.X;
         }
-        if (checkColForWin(xIndex, yIndex, value) == ElState.O || checkRowsForWin(xIndex, yIndex, value) == ElState.O || checkDiagForWin(xIndex, yIndex, value) == ElState.O) {
+        if (checkColForWin() == ElState.O || checkRowsForWin() == ElState.O || checkDiagForWin() == ElState.O) {
             System.out.println("ZERO IS WINNER");
             return ElState.O;
         }

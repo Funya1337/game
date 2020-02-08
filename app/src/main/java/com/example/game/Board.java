@@ -105,10 +105,23 @@ public class Board {
         return ElState.E;
     }
 
+    public boolean checkBoardIsFull() {
+        int checker = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] != ElState.E) {
+                    checker += 1;
+                }
+            }
+        }
+        if (checker == 9) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public ElState checkForWinner() {
-//        System.out.println(checkColForWin(xIndex, yIndex, value));
-//        System.out.println(checkRowsForWin(xIndex, yIndex, value));
-//        System.out.println(checkDiagForWin(xIndex, yIndex, value));
         if (checkColForWin() == ElState.X || checkRowsForWin() == ElState.X || checkDiagForWin() == ElState.X) {
             System.out.println("CROSS IS WINNER");
             return ElState.X;
@@ -116,6 +129,11 @@ public class Board {
         if (checkColForWin() == ElState.O || checkRowsForWin() == ElState.O || checkDiagForWin() == ElState.O) {
             System.out.println("ZERO IS WINNER");
             return ElState.O;
+        }
+        if (checkBoardIsFull() == true && checkColForWin() != ElState.O && checkColForWin() != ElState.X && checkRowsForWin() != ElState.X && checkRowsForWin() != ElState.O
+        && checkDiagForWin() != ElState.O && checkDiagForWin() != ElState.X) {
+            System.out.println("NO WINNER");
+            return ElState.N;
         }
         return ElState.E;
     }

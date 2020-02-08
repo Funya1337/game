@@ -37,10 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         newBoard.setElement(indexI, indexJ, turn);
-                        newBoard.checkRowsForWin();
-                        newBoard.checkColForWin();
-                        newBoard.checkDiagForWin();
-                        newBoard.checkForWinner();
+                        logWinner();
                         newBoard.print();
                         button.setText(getTurnText());
                         nextTurn();
@@ -53,8 +50,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void logWinner() {
+        TextView winnerText = findViewById(R.id.winner);
+        if (newBoard.checkForWinner() == ElState.X) {
+            winnerText.setText("CROSS IS WINNER");
+        }
+        if (newBoard.checkForWinner() == ElState.O) {
+            winnerText.setText("ZERO IS WINNER");
+        }
+        if (newBoard.checkForWinner() == ElState.N) {
+            winnerText.setText("NO WINNER");
+        }
+    }
+
     public void resetFunc() {
-        Button button = (Button) findViewById(R.id.button_reset);
+        Button button = findViewById(R.id.button_reset);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 newBoard.clearBoard();

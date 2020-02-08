@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/play_but"
+        android:icon="@drawable/ic_play_arrow_black_24dp"
+        android:title="Play"
+        android:state_checked="true"/>
+    <item
+        android:id="@+id/build_but"
+        android:icon="@drawable/ic_build_black_24dp"
+        android:title="Build level"
+        android:state_checked="false"/>
+    <item
+        android:id="@+id/mood_but"
+        android:icon="@drawable/ic_mood_black_24dp"
+        android:title="Mood"
+        android:state_checked="false"/>
+</menu>

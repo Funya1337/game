@@ -12,17 +12,13 @@ public class Board {
     }
 
     public void clearBoard() {
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < board.length; i++) {
             Arrays.fill(board[i], ElState.E);
         }
     }
 
     public void setElement(int xIndex, int yIndex, ElState value) {
         board[xIndex][yIndex] = value;
-    }
-
-    public ElState getElement(int xIndex, int yIndex) {
-        return board[xIndex][yIndex];
     }
 
     public ElState checkRowsForWin() {
@@ -123,16 +119,13 @@ public class Board {
 
     public ElState checkForWinner() {
         if (checkColForWin() == ElState.X || checkRowsForWin() == ElState.X || checkDiagForWin() == ElState.X) {
-            System.out.println("CROSS IS WINNER");
             return ElState.X;
         }
         if (checkColForWin() == ElState.O || checkRowsForWin() == ElState.O || checkDiagForWin() == ElState.O) {
-            System.out.println("ZERO IS WINNER");
             return ElState.O;
         }
         if (checkBoardIsFull() == true && checkColForWin() != ElState.O && checkColForWin() != ElState.X && checkRowsForWin() != ElState.X && checkRowsForWin() != ElState.O
         && checkDiagForWin() != ElState.O && checkDiagForWin() != ElState.X) {
-            System.out.println("NO WINNER");
             return ElState.N;
         }
         return ElState.E;
@@ -140,7 +133,7 @@ public class Board {
 
     void print() {
         System.out.println("--- BOARD BEGIN ---");
-        for (int i=0; i<boardSize; i++) {
+        for (int i=0; i< board.length; i++) {
             System.out.println(board[i][0] + " " + board[i][1] + " " + board[i][2]);
         }
         System.out.println("--- BOARD END ---");
